@@ -13,9 +13,7 @@ const {theme, toggleTheme} = useTheme();
 
     return (
         <div className={classNames('app', {}, [theme])}>
-            <button onClick={toggleTheme}>
-               { theme == 'dark' ? 'Light' : 'Dark'}
-            </button>
+            
            <Navbar/>
         <AppRouter />
         </div>
