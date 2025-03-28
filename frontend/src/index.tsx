@@ -12,4 +12,4 @@ ReactDOM.createRoot(root).render(
             <App/>
         </ThemeProvider>
     </BrowserRouter>
-    );
+);
