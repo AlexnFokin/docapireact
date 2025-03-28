@@ -3,12 +3,11 @@
     width: var(--sidebar-width);
     background-color: var(--inverted-bg-color);
     position: relative;
-    transition: all .4s ease;
+    transition: all 0.4s ease;
 }
 
 .collapsed {
     width: var(--sidebar-width-collapsed);
-    
 }
 
 .switchers {

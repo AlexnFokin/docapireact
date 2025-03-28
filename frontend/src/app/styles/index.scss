@@ -1,13 +1,11 @@
-@use "reset.scss";
-@use "variables/global.scss";
-@use "themes/light.scss";
-@use "themes/dark.scss";
-@use "tailwindcss";
-
+@use 'reset.scss';
+@use 'variables/global.scss';
+@use 'themes/light.scss';
+@use 'themes/dark.scss';
+@use 'tailwindcss';
 
 .app {
     font: var(--font-m);
-
     background-color: var(--bg-primary);
     color: var(--text-primary);
     min-height: 100vh;
