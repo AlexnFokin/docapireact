@@ -15,6 +15,9 @@ export default defineConfig([
     tseslint.configs.recommended,
     pluginReact.configs.flat.recommended,
     {
+        env: {
+            jest: true,
+        },
         rules: {
             "react/react-in-jsx-scope": "off",
             "indent": ["error", 4, {
