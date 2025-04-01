@@ -1,48 +1,48 @@
 import type { Config } from 'jest';
 
 const config: Config = {
-  preset: 'ts-jest',
+    preset: 'ts-jest',
   
-  testEnvironment: 'jsdom',
+    testEnvironment: 'jsdom',
 
-  transform: {
-    '^.+\\.tsx?$': ['ts-jest', {
-        tsconfig: '<rootDir>/tsconfig.json', 
-      }],
-  },
+    transform: {
+        '^.+\\.tsx?$': ['ts-jest', {
+            tsconfig: '<rootDir>/tsconfig.json', 
+        }],
+    },
 
-  moduleFileExtensions: [
-    'js',
-    'mjs',
-    'cjs',
-    'jsx',
-    'ts',
-    'tsx',
-    'json',
-    'node',
-  ],
+    moduleFileExtensions: [
+        'js',
+        'mjs',
+        'cjs',
+        'jsx',
+        'ts',
+        'tsx',
+        'json',
+        'node',
+    ],
 
-  rootDir: '../../',
+    rootDir: '../../',
 
-  testMatch: [
-    '<rootDir>/src/**/*.{test,spec}.{ts,tsx}',
-  ],
+    testMatch: [
+        '<rootDir>/src/**/*.{test,spec}.{ts,tsx}',
+    ],
 
-  coverageDirectory: 'coverage',
+    coverageDirectory: 'coverage',
 
-  coveragePathIgnorePatterns: ['/node_modules/'],
+    coveragePathIgnorePatterns: ['/node_modules/'],
 
-  clearMocks: true,
+    clearMocks: true,
 
-  collectCoverage: true,
+    collectCoverage: true,
 
-  transformIgnorePatterns: [
-    '/node_modules/',
-  ],
+    transformIgnorePatterns: [
+        '/node_modules/',
+    ],
 
-  moduleNameMapper: {
-    '^src/(.*)$': '<rootDir>/src/$1', 
-  },
+    moduleNameMapper: {
+        '^src/(.*)$': '<rootDir>/src/$1', 
+    },
 };
 
 export default config;

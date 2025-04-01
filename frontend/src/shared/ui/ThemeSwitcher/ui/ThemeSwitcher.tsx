@@ -4,8 +4,7 @@ import * as cls from './ThemeSwitcher.module.scss'
 import { Theme, useTheme } from "app/providers/ThemeProvider"
 import LightThemeIcon from 'shared/assets/icons/theme-light.svg'
 import DarkThemeIcon from 'shared/assets/icons/theme-dark.svg'
-import { Button } from "shared/ui/Button"
-import { ThemeButton } from "shared/ui/Button/ui/Button"
+import { Button, ThemeButton } from "shared/ui/Button"
 
 export interface ThemeSwitcherProps {
     claassName? : string
