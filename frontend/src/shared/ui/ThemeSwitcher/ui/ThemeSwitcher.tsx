@@ -1,5 +1,5 @@
 import { FC } from "react"
-import { classNames } from "shared/lib/classNames"
+import { classNames } from "shared/lib/classNames/classNames"
 import * as cls from './ThemeSwitcher.module.scss'
 import { Theme, useTheme } from "app/providers/ThemeProvider"
 import LightThemeIcon from 'shared/assets/icons/theme-light.svg'

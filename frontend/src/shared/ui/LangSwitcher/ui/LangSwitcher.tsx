@@ -3,7 +3,7 @@ import * as cls from './LangSwitcher.module.scss';
 import { Button } from 'shared/ui/Button';
 import { ThemeButton } from 'shared/ui/Button/ui/Button';
 import { useTranslation } from 'react-i18next';
-import { classNames } from 'shared/lib/classNames';
+import { classNames } from 'shared/lib/classNames/classNames';
 
 export interface LangSwitcherProps {
     className?: string
