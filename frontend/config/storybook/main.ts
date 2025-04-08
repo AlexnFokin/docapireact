@@ -1,6 +1,8 @@
 import type { StorybookConfig } from '@storybook/react-webpack5';
 import path from 'path';
 import buildCssLoaders from '../build/loaders/buildCssLoaders';
+import { RuleSetRule } from 'webpack';
+import buildSvgLoader from '../build/loaders/buildSvgLoader';
 
 const config: StorybookConfig = {
     "stories": [
@@ -28,7 +30,15 @@ const config: StorybookConfig = {
             ...config.resolve.alias,
             'shared': path.resolve(__dirname, '..', '..', 'src', 'shared'),
         };
-    
+         
+        config.module.rules = config.module?.rules?.map((rule: RuleSetRule) => {
+            if (/svg/.test(rule.test as string)) {
+                return {...rule, exclude: /\.svg$/i}
+            }
+            return rule;
+        })
+        
+        config.module?.rules?.push(buildSvgLoader())
         config.module.rules.push(buildCssLoaders(true))
         
         return config;

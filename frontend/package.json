@@ -85,6 +85,7 @@
     "webpack-dev-server": "^5.2.0"
   },
   "dependencies": {
+    "@storybook/types": "^8.6.12",
     "@types/react-router-dom": "^5.3.3",
     "i18next": "^24.2.3",
     "i18next-browser-languagedetector": "^8.0.4",
