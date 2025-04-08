@@ -4,28 +4,68 @@ on:
     branches: [master]
   pull_request:
     branches: [master]
+
 jobs:
-  pipeline:
+  install:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [22.14.0]
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Staring Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: install nodejs dependencies
-      working-directory: ./frontend
-      run: npm install
-    - name: build project 
-      working-directory: ./frontend
-      run: npm run build:prod
-    - name: linting typescript
-      working-directory: ./frontend
-      run: npm run lint:ts
-    - name: linting css
-      working-directory: ./frontend
-      run: npm run lint:scss
+      - uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install dependencies
+        working-directory: ./frontend
+        run: npm install
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        with:
+          path: frontend/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('frontend/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+  build:
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Restore node_modules
+        uses: actions/cache@v3
+        with:
+          path: frontend/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('frontend/package-lock.json') }}
+      - name: Build
+        working-directory: ./frontend
+        run: npm run build:prod
+
+  lint-ts:
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Restore node_modules
+        uses: actions/cache@v3
+        with:
+          path: frontend/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('frontend/package-lock.json') }}
+      - name: Lint TypeScript
+        working-directory: ./frontend
+        run: npm run lint:ts
+
+  lint-scss:
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Restore node_modules
+        uses: actions/cache@v3
+        with:
+          path: frontend/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('frontend/package-lock.json') }}
+      - name: Lint SCSS
+        working-directory: ./frontend
+        run: npm run lint:scss
