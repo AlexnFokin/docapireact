@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next"
 import { classNames } from "shared/lib/classNames/classNames";
 import * as cls from './PageError.module.scss';
-import { Button, ThemeButton } from "shared/ui/Button/ui/Button";
+import { Button, ButtonTheme } from "shared/ui/Button/ui/Button";
 
 interface PageErrorProps {
     className?: string
@@ -21,7 +21,7 @@ const PageError = ({className}: PageErrorProps) => {
                 {t('An unexpected error occurred')}
             </p>
             <Button
-                theme={ThemeButton.ERROR}
+                theme={ButtonTheme.OUTLINE}
                 onClick={reloadPage}>
                 {t('Refresh page')}
             </Button>

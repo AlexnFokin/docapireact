@@ -1,5 +1,5 @@
 import {render, screen} from '@testing-library/react';
-import {Button, ThemeButton} from 'shared/ui/Button/ui/Button';
+import {Button, ButtonTheme} from 'shared/ui/Button/ui/Button';
 
 jest.mock('./Button.module.scss', ()=> ({
     clear: 'clear'
@@ -14,7 +14,7 @@ describe('Button', () => {
     });
 
     test("Button with theme", () => {
-        render(<Button theme={ThemeButton.CLEAR}>test</Button>)
+        render(<Button theme={ButtonTheme.CLEAR}>test</Button>)
         const button = screen.getByText('test');
         expect(button.classList.contains('clear')).toBe(true); 
     })

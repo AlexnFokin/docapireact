@@ -8,6 +8,9 @@
 
 .collapsed {
     width: var(--sidebar-width-collapsed);
+    .switchers {
+        flex-direction: column;
+    }
 }
 
 .switchers {
@@ -18,4 +21,21 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
+}
+
+.collapseBtn {
+    position: absolute;
+    right: -32px;
+    bottom: 32px;
+}
+
+.items {
+    margin-top: 20px;
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.link {
+    margin-top: 8px;
 }

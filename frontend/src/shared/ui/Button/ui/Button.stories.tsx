@@ -1,6 +1,6 @@
+import type { Meta, StoryFn } from '@storybook/react';
+import { Button, ButtonTheme, ButtonSize } from './Button';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import { Button, ThemeButton } from './Button';
-import type { Meta, StoryObj } from '@storybook/react';
 import { Theme } from 'app/providers/ThemeProvider';
 
 const meta: Meta<typeof Button> = {
@@ -9,7 +9,11 @@ const meta: Meta<typeof Button> = {
     argTypes: {
         theme: {
             control: 'select',
-            options: Object.values(ThemeButton),
+            options: Object.values(ButtonTheme),
+        },
+        size: {
+            control: 'select',
+            options: Object.values(ButtonSize),
         },
         children: {
             control: 'text',
@@ -19,70 +23,78 @@ const meta: Meta<typeof Button> = {
 
 export default meta;
 
-type Story = StoryObj<typeof Button>;
+const Template: StoryFn<typeof Button> = (args) => <Button {...args} />;
 
-export const Primary: Story = {
-    args: {
-        children: 'Text',
-    },
+export const Primary = Template.bind({});
+Primary.args = {
+    children: 'Text',
 };
 
-export const PrimaryDark: Story = {
-    args: {
-        children: 'Text',
-    },
-    decorators: [
-        ThemeDecorator(Theme.DARK)
-    ]
+export const PrimaryDark = Template.bind({});
+PrimaryDark.args = {
+    children: 'Text',
+};
+PrimaryDark.decorators = [ThemeDecorator(Theme.DARK)];
+
+export const Clear = Template.bind({});
+Clear.args = {
+    children: 'Text',
+    theme: ButtonTheme.CLEAR,
 };
 
-export const Clear: Story = {
-    args: {
-        children: 'Text',
-        theme: ThemeButton.CLEAR,
-    },
+export const ClearDark = Template.bind({});
+ClearDark.args = {
+    children: 'Text',
+    theme: ButtonTheme.CLEAR,
+};
+ClearDark.decorators = [ThemeDecorator(Theme.DARK)];
+
+export const Outline = Template.bind({});
+Outline.args = {
+    children: 'Text',
+    theme: ButtonTheme.OUTLINE,
 };
 
-export const ClearDark: Story = {
-    args: {
-        children: 'Text',
-        theme: ThemeButton.CLEAR,
-    },
-    decorators: [
-        ThemeDecorator(Theme.DARK)
-    ]
+export const OutlineDark = Template.bind({});
+OutlineDark.args = {
+    children: 'Text',
+    theme: ButtonTheme.OUTLINE,
+};
+OutlineDark.decorators = [ThemeDecorator(Theme.DARK)];
+
+export const Background = Template.bind({});
+Background.args = {
+    children: 'Text',
+    theme: ButtonTheme.BACKGROUND_INVERTED,
 };
 
-export const Error: Story = {
-    args: {
-        children: 'Text',
-        theme: ThemeButton.ERROR
-    },
+export const BackgroundInverted = Template.bind({});
+BackgroundInverted.args = {
+    children: 'Text',
+    theme: ButtonTheme.BACKGROUND_INVERTED,
 };
 
-export const ErrorDark: Story = {
-    args: {
-        children: 'Text',
-        theme: ThemeButton.ERROR
-    },
-    decorators: [
-        ThemeDecorator(Theme.DARK)
-    ]
+export const Square = Template.bind({});
+Square.args = {
+    children: '>',
+    theme: ButtonTheme.BACKGROUND_INVERTED,
+    square: true,
 };
 
-export const Outline: Story = {
-    args: {
-        children: 'Text',
-        theme: ThemeButton.OUTLINE
-    },
+export const SizeM = Template.bind({});
+SizeM.args = {
+    children: 'Text',
+    size: ButtonSize.M,
 };
 
-export const OutlineDark: Story = {
-    args: {
-        children: 'Text',
-        theme: ThemeButton.OUTLINE
-    },
-    decorators: [
-        ThemeDecorator(Theme.DARK)
-    ]
-}
+export const SizeL = Template.bind({});
+SizeL.args = {
+    children: 'Text',
+    size: ButtonSize.L,
+};
+
+export const SizeXL = Template.bind({});
+SizeXL.args = {
+    children: 'Text',
+    size: ButtonSize.Xl,
+};
