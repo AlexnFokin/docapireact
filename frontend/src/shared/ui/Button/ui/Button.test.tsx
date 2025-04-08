@@ -1,5 +1,5 @@
 import {render, screen} from '@testing-library/react';
-import {Button, ThemeButton} from 'shared/ui/Button/';
+import {Button, ThemeButton} from 'shared/ui/Button/ui/Button';
 
 jest.mock('./Button.module.scss', ()=> ({
     clear: 'clear'

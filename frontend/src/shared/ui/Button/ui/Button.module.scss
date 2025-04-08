@@ -1,17 +1,44 @@
 .Button {
     cursor: pointer;
-}
-
-.clear {
-    padding: 0;
-    margin: 0;
-    outline: none;
     background: none;
-    border: none;
-}
-
-.error {
-    padding: 8px 16px;
-    border-radius: 22px;
-    border: 1px solid var(--red);
-}
+    font-family: inherit;
+    transition: all 0.2s ease;
+    font-weight: 500;
+  
+    &:not(.clear) {
+      padding: 8px 16px;
+      border-radius: 4px;
+    }
+  
+    &.clear {
+      padding: 0;
+      margin: 0;
+      outline: none;
+      border: none;
+      background: transparent;
+      
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  
+    &.error {
+      background-color: rgba(239, 68, 68, 0.1);
+      color: #ef4444;
+      border: 1px solid #ef4444;
+      
+      &:hover {
+        background-color: rgba(239, 68, 68, 0.2);
+      }
+    }
+  
+    &.outline {
+      color: #3b82f6;
+      border: 1px solid #3b82f6;
+      background: transparent;
+      
+      &:hover {
+        background-color: rgba(59, 130, 246, 0.05);
+      }
+    }
+  }

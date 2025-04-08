@@ -4,7 +4,8 @@ import * as cls from "./Button.module.scss"
 
 export enum ThemeButton {
     CLEAR = 'clear',
-    ERROR = 'error'
+    ERROR = 'error',
+    OUTLINE = 'outline'
 }
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
@@ -13,7 +14,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
 }
 
 /* eslint-disable react/jsx-props-no-spreading */
-const Button: FC<ButtonProps> = (props) => {
+export const Button: FC<ButtonProps> = (props) => {
 
     const {
         className,
@@ -32,5 +33,3 @@ const Button: FC<ButtonProps> = (props) => {
         </button>
     )
 }
-
-export default Button;
