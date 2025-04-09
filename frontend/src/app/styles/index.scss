@@ -4,11 +4,16 @@
 @use 'themes/dark.scss';
 @use 'tailwindcss';
 
-.app {
+
+body {
     font: var(--font-m);
-    background-color: var(--bg-primary);
+
     color: var(--text-primary);
     min-height: 100vh;
+}    
+
+.app {
+    background-color: var(--bg-primary);
 }
 
 .content-page {

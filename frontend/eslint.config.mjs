@@ -9,7 +9,8 @@ export default defineConfig([
     ...tseslint.configs.recommended,
     {
         plugins: {
-            react: reactPlugin
+            react: reactPlugin,
+            "react-hooks": require("eslint-plugin-react-hooks"),
         },
         settings: {
             react: {
@@ -52,7 +53,9 @@ export default defineConfig([
             "no-shadow": "off",
             "import/extensions": "off",
             "import/no-extraneous-dependencies": "off",
-            "no-underscore-dangle": "off"
+            "no-underscore-dangle": "off",
+            "react-hooks/rules-of-hooks": "error",
+            "react-hooks/exhaustive-deps": "error" 
         },
         ignores: ["build/**/*"],
     }
