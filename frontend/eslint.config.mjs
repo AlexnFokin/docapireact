@@ -3,6 +3,7 @@ import globals from "globals";
 import js from "@eslint/js";
 import tseslint from "typescript-eslint";
 import reactPlugin from "eslint-plugin-react";
+import reactHooks from 'eslint-plugin-react-hooks';
 
 export default defineConfig([
     js.configs.recommended,
@@ -10,7 +11,7 @@ export default defineConfig([
     {
         plugins: {
             react: reactPlugin,
-            "react-hooks": require("eslint-plugin-react-hooks"),
+            'react-hooks': reactHooks,
         },
         settings: {
             react: {

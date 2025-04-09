@@ -7,7 +7,7 @@ import { Theme, ThemeProvider } from 'app/providers/ThemeProvider';
 //"@ts-expect-error"
 export const ThemeDecorator = (theme: Theme): Decorator => (StoryFn, context) => (
     
-    <ThemeProvider >
+    <ThemeProvider initialTheme={theme}>
         <div className={`app ${theme}`} style={{ padding: '20px' }}>
             <StoryFn {...context} />
         </div>
