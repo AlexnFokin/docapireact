@@ -3,6 +3,10 @@ import path from 'path';
 
 const config: Config = {
     preset: 'ts-jest',
+
+    globals: {
+        '__IS_DEV__': true
+    },
   
     testEnvironment: 'jsdom',
 
@@ -44,7 +48,8 @@ const config: Config = {
     moduleNameMapper: {
         '\\.(css|scss)$': 'identity-obj-proxy',
         '^src/(.*)$': '<rootDir>/src/$1', 
-        '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx')
+        '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
+        '^entities/(.*)$': '<rootDir>/src/entities/$1',
     },
     modulePaths: [
         "<rootDir>src"
