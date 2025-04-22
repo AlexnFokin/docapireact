@@ -23,7 +23,7 @@ if (slice === 'pages') componentName = `${componentName}Page`;
 let componentDir, tsxFile, scssFile, storiesFile, indexPath, asyncPageFile;
 
 if (slice === 'shared') {
-    componentDir = resolve(__dirname, '..', 'src', slice, componentName);
+    componentDir = resolve(__dirname, '..', 'src', `${slice}/ui`, componentName);
     tsxFile = join(componentDir, `${componentName}.tsx`);
     scssFile = join(componentDir, `${componentName}.module.scss`);
     storiesFile = join(componentDir, `${componentName}.stories.tsx`);

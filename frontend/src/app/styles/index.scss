@@ -2,7 +2,6 @@
 @use 'variables/global.scss';
 @use 'themes/light.scss';
 @use 'themes/dark.scss';
-@use 'tailwindcss';
 
 body {
     font: var(--font-m);

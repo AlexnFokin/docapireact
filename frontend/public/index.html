@@ -7,4 +7,9 @@
 </head>
 <body>
 <div id="root"></div>
+<script>
+  const theme = localStorage.getItem('theme') || 'light';
+  const root = document.body;
+  if (root) root.classList.add(theme);
+</script>
 </body>
