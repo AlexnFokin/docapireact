@@ -31,7 +31,7 @@ const LoginForm = memo(({className}: LoginFormProps) => {
   
     const onLoginClick = useCallback(() => {
         (dispatch as any)(loginByUserEmail({email, password}))
-    }, [dispatch])
+    }, [dispatch, email, password])
 
     return (
         <div className={classNames(cls.LoginForm, {}, [className])}>

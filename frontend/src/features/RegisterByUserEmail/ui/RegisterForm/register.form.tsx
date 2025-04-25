@@ -3,8 +3,11 @@ import * as cls from './register.form.module.scss';
 import { useTranslation } from "react-i18next";
 import { Button, ButtonTheme } from "shared/ui/Button/ui/Button";
 import { Input } from "shared/ui/Input/Input";
-import { memo, } from "react";
-// import { useDispatch, useSelector } from "react-redux";
+import { memo, useCallback, } from "react";
+import { getRegisterState } from "../../model/selectors/getRegisterState/getRegisterState";
+import { useDispatch, useSelector } from "react-redux";
+import { registerActions } from "../../model/slice/register.slice";
+import { RegisterByUserEmail } from "../..//model/services/registerByUserEmail/registerByUserEmail";
 
 
 interface RegisterFormProps {
@@ -14,34 +17,53 @@ interface RegisterFormProps {
 const RegisterForm = memo(({className}: RegisterFormProps) => {
 
     const {t} = useTranslation();
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-    // const {email, password} = useSelector(getRegisterState);
+    const {name, email, password} = useSelector(getRegisterState);
 
-    // const onRegisterClick = useCallback(() => {
-    //     (dispatch as any)(RegisterByUserEmail({email, password}))
-    // }, [dispatch])
+    const onChangeUserName = useCallback((value: string)=> {
+        dispatch(registerActions.setName(value))
+    }, [dispatch])
+
+    const onChangeUserEmail = useCallback((value: string) => {
+        dispatch(registerActions.setEmail(value))
+    }, [dispatch])
+
+    const onChangeUserPassword = useCallback((value: string) => {
+        dispatch(registerActions.setPassword(value))
+    }, [dispatch])
+
+    const onRegisterClick = useCallback(() => {
+        (dispatch as any)(RegisterByUserEmail({name, email, password}))
+    }, [dispatch, email, name, password])
 
     return (
         <div className={classNames(cls.RegisterForm, {}, [className])}>
             <Input 
                 type="text" 
+                name="Name" 
+                placeholder="Input name"
+                value={name}
+                onChange={onChangeUserName}
+            />
+            <Input 
+                type="text" 
                 name="email" 
                 placeholder="Input email"
-                // value={email}
-                // onChange={onChangeUserEmail}
+                value={email}
+                onChange={onChangeUserEmail}
             />
             <Input 
                 type="password" 
                 name="password" 
                 placeholder="Input password"
-                // value={password}
-                // onChange={onChangeUserPassword}
+                value={password}
+                onChange={onChangeUserPassword}
             />
             <Button 
                 theme={ButtonTheme.OUTLINE}
                 rounded
-                // onClick={onRegisterClick}
+                onClick={onRegisterClick}
             >
                 {t('Register')}
             </Button>
