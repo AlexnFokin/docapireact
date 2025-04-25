@@ -34,6 +34,7 @@ const RegisterForm = memo(({className}: RegisterFormProps) => {
     }, [dispatch])
 
     const onRegisterClick = useCallback(() => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (dispatch as any)(RegisterByUserEmail({name, email, password}))
     }, [dispatch, email, name, password])
 

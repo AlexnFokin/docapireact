@@ -30,6 +30,7 @@ const LoginForm = memo(({className}: LoginFormProps) => {
     }, [dispatch])
   
     const onLoginClick = useCallback(() => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (dispatch as any)(loginByUserEmail({email, password}))
     }, [dispatch, email, password])
 

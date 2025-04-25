@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { loginByUserEmail } from "../services/loginByUserEmail/loginByUserEmail";
 import { LoginSchema } from "../types/login.schema";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
