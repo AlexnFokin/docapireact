@@ -5,9 +5,10 @@ import { User } from "entities/User";
 interface RegisterByUserEmailProps {
     email: string
     password: string
+    name: string
 }
 
-export const loginByUserEmail = createAsyncThunk<User, RegisterByUserEmailProps>(
+export const RegisterByUserEmail = createAsyncThunk<User, RegisterByUserEmailProps>(
     'login/registerByUserEmail',
     async (authData, thunkApi) => {
 
