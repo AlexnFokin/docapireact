@@ -10,7 +10,7 @@ import { getLoginState } from "features/AuthByUserEmail/model/selectors/getLogin
 import { loginByUserEmail } from "../../model/services/loginByUserEmail/loginByUserEmail";
 
 
-interface LoginFormProps {
+export interface LoginFormProps {
     className?: string
 }
 
@@ -63,4 +63,4 @@ const LoginForm = memo(({className}: LoginFormProps) => {
 
 LoginForm.displayName = 'LoginForm';
 
-export {LoginForm}
+export default LoginForm;

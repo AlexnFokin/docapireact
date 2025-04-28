@@ -10,7 +10,7 @@ import { registerActions } from "../../model/slice/register.slice";
 import { RegisterByUserEmail } from "../..//model/services/registerByUserEmail/registerByUserEmail";
 
 
-interface RegisterFormProps {
+export interface RegisterFormProps {
     className?: string
 }
 
@@ -74,4 +74,4 @@ const RegisterForm = memo(({className}: RegisterFormProps) => {
 
 RegisterForm.displayName = 'RegisterForm';
 
-export {RegisterForm}
+export default RegisterForm;

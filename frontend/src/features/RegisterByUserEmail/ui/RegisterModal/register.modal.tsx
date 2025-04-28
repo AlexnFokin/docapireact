@@ -1,7 +1,8 @@
 import { classNames } from "shared/lib/classNames/classNames";
 import * as cls from './register.modal.module.scss';
 import { Modal } from "shared/ui/Modal/Modal";
-import { RegisterForm } from "../RegisterForm/register.form";
+import { RegisterFormAsync } from "../RegisterForm/register.form.async";
+import { Suspense } from "react";
 ;
 
 
@@ -21,7 +22,9 @@ const RegisterModal = (props: RegisterModalProps) => {
             onClose={onClose}
             lazy={true}
         >
-            <RegisterForm/>
+            <Suspense>
+                <RegisterFormAsync/>
+            </Suspense>
         </Modal>
     )
 }
