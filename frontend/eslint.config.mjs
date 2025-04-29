@@ -56,7 +56,8 @@ export default defineConfig([
             "import/no-extraneous-dependencies": "off",
             "no-underscore-dangle": "off",
             "react-hooks/rules-of-hooks": "error",
-            "react-hooks/exhaustive-deps": "error" 
+            "react-hooks/exhaustive-deps": "error",
+            "react/prop-types": "off"
         },
         ignores: ["build/**/*",
             "scripts/**/*.js",

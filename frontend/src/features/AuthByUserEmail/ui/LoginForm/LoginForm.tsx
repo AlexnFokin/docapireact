@@ -5,13 +5,21 @@ import { Button, ButtonTheme } from "shared/ui/Button/ui/Button";
 import { Input } from "shared/ui/Input/Input";
 import { memo, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loginActions } from "../../model/slice/login.slice";
-import { getLoginState } from "features/AuthByUserEmail/model/selectors/getLoginState/getLoginState";
+import { loginActions, loginReducer } from "../../model/slice/login.slice";
 import { loginByUserEmail } from "../../model/services/loginByUserEmail/loginByUserEmail";
+import { getLoginUserEmail } from "../../model/selectors/getLoginUserEmail/getLoginUserEmail";
+import { getLoginUserPassword } from "../../model/selectors/getLoginUserPassword/getLoginUserPassword";
+import DynamicModuleLoader, { ReducersList } from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
+// import { getLoginIsLoading } from "../../model/selectors/getLoginIsLoading/getLoginIsLoading";
+// import { getLoginError } from "../../model/selectors/getLoginError/getLoginError";
 
 
 export interface LoginFormProps {
     className?: string
+}
+
+const initialReducers: ReducersList = {
+    loginFrom: loginReducer
 }
 
 const LoginForm = memo(({className}: LoginFormProps) => {
@@ -19,7 +27,12 @@ const LoginForm = memo(({className}: LoginFormProps) => {
     const {t} = useTranslation();
     const dispatch = useDispatch();
 
-    const {email, password} = useSelector(getLoginState);
+    const email = useSelector(getLoginUserEmail);
+    const password = useSelector(getLoginUserPassword);
+    // const isLoading = useSelector(getLoginIsLoading);
+    // const error = useSelector(getLoginError);
+
+
 
     const onChangeUserEmail = useCallback((value: string) => {
         dispatch(loginActions.setEmail(value || ''))
@@ -35,29 +48,34 @@ const LoginForm = memo(({className}: LoginFormProps) => {
     }, [dispatch, email, password])
 
     return (
-        <div className={classNames(cls.LoginForm, {}, [className])}>
-            <Input 
-                type="text" 
-                name="email" 
-                placeholder="Input email"
-                value={email}
-                onChange={onChangeUserEmail}
-            />
-            <Input 
-                type="password" 
-                name="password" 
-                placeholder="Input password"
-                value={password}
-                onChange={onChangeUserPassword}
-            />
-            <Button 
-                theme={ButtonTheme.OUTLINE}
-                rounded
-                onClick={onLoginClick}
-            >
-                {t('Login')}
-            </Button>
-        </div>
+        <DynamicModuleLoader 
+            reducers={initialReducers}
+            removeAfterUnmount={true}
+        >
+            <div className={classNames(cls.LoginForm, {}, [className])}>
+                <Input 
+                    type="text" 
+                    name="email" 
+                    placeholder="Input email"
+                    value={email}
+                    onChange={onChangeUserEmail}
+                />
+                <Input 
+                    type="password" 
+                    name="password" 
+                    placeholder="Input password"
+                    value={password}
+                    onChange={onChangeUserPassword}
+                />
+                <Button 
+                    theme={ButtonTheme.OUTLINE}
+                    rounded
+                    onClick={onLoginClick}
+                >
+                    {t('Login')}
+                </Button>
+            </div>
+        </DynamicModuleLoader>
     )
 })
 

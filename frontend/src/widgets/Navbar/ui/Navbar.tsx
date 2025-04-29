@@ -48,10 +48,10 @@ export const Navbar = ({className}: NavbarProps) => {
             >
                 {t('Register')}
             </Button>
-            <LoginModal
+            {isAuthModal && <LoginModal
                 isOpen={isAuthModal}
                 onClose={onCloseModal}
-            />
+            />}
             <RegisterModal
                 isOpen={isRegisterModal}
                 onClose={onCloseRegisterModal}
