@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+ 
 import { loginByUserEmail } from "../services/loginByUserEmail/loginByUserEmail";
 import { LoginSchema } from "../types/login.schema";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
@@ -22,15 +22,16 @@ export const loginSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(loginByUserEmail.pending, (state, action) => {
+            .addCase(loginByUserEmail.pending, (state) => {
                 state.error = undefined;
                 state.isLoading = true;
             })
-            .addCase(loginByUserEmail.fulfilled, (state, action) => {
+            .addCase(loginByUserEmail.fulfilled, (state) => {
                 state.isLoading = false;
             })
             .addCase(loginByUserEmail.rejected, (state, action) => {
                 state.isLoading = false;
+                state.error = action.payload;
             })
     },
 })

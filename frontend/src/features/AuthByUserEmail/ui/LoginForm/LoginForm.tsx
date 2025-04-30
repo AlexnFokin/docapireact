@@ -15,7 +15,7 @@ import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 // import { getLoginError } from "../../model/selectors/getLoginError/getLoginError";
 
 
-export interface LoginFormProps {
+export interface LoginFormProps {useDispatch
     className?: string;
     onSuccess: () => void;
 }
@@ -43,12 +43,13 @@ const LoginForm = memo(({className, onSuccess}: LoginFormProps) => {
     }, [dispatch])
   
     const onLoginClick = useCallback(async () => {
+
         const result = await dispatch(loginByUserEmail({email, password}))
         console.log(result)
-        if (result.meta.status === 'fulfilled') {
+        if (result.meta.requestStatus === 'fulfilled') {
             onSuccess()
         }
-    }, [dispatch, email, password])
+    }, [dispatch, email, onSuccess, password])
 
     return (
         <DynamicModuleLoader 

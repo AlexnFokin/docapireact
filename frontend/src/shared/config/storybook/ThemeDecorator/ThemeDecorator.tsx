@@ -1,5 +1,5 @@
 /* eslint-disable react/display-name */
-/* eslint-disable @typescript-eslint/no-explicit-any */
+ 
 /* eslint-disable react/jsx-props-no-spreading */
 import { Decorator } from '@storybook/react';
 import { Theme, ThemeProvider } from 'app/providers/ThemeProvider';

@@ -11,6 +11,7 @@ import { createReducerManager } from './reducer.manager';
 export function createReduxStore(
     initialState?: StateSchema,
     asyncReducers?: ReducersMapObject<StateSchema>,
+    // eslint-disable-next-line no-unused-vars
     navigate?: (to: To, options?: NavigateOptions) => void,
 ) {
     const rootReducers: ReducersMapObject<StateSchema> = {

@@ -4,6 +4,7 @@ import { FC, PropsWithChildren, useEffect } from "react";
 import { useDispatch, useStore } from "react-redux";
 
 export type ReducersList = {
+
     // eslint-disable-next-line no-unused-vars
     [name in StateSchemaKey]?: Reducer
 }
@@ -12,7 +13,6 @@ type ReducersListEntry = [StateSchemaKey, Reducer];
 
 interface DynamicModuleLoaderProps extends PropsWithChildren{
     reducers: ReducersList;
-
     removeAfterUnmount?: boolean
 }
 
@@ -27,7 +27,7 @@ const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = (props) => {
 
     useEffect(() => {
         Object.entries(reducers).forEach(([name, reducer]: ReducersListEntry) => {
-            store.reducerManager.add(name, reducer);
+            store.reducerManager.add(name as StateSchemaKey, reducer);
             dispatch({ type: `@INIT ${name} reducer` });
         })
        
@@ -36,7 +36,7 @@ const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = (props) => {
 
             Object.entries(reducers).forEach(([name]: ReducersListEntry) => {
                 if (removeAfterUnmount) {
-                    store.reducerManager.remove(name);
+                    store.reducerManager.remove(name as StateSchemaKey);
                     dispatch({ type: `@DESTROY ${name} reducer` });
                 }
             })
