@@ -1,4 +1,4 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk, isRejectedWithValue } from "@reduxjs/toolkit";
 import axios from "axios";
 import { User } from "entities/User";
 
@@ -22,7 +22,7 @@ export const loginByUserEmail = createAsyncThunk<User, LoginByUserEmailProps>(
             return response.data;
         } catch (error) {
             console.log(error)
-            return rejectWithValue('error')
+            return isRejectedWithValue('error')
         }
     }
 )
