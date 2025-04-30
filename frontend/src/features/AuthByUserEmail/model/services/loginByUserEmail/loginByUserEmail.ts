@@ -9,10 +9,11 @@ interface LoginByUserEmailProps {
 
 export const loginByUserEmail = createAsyncThunk<User, LoginByUserEmailProps>(
     'login/loginByUserEmail',
-    async (authData, thunkApi) => {
+    async (authData, {extra, dispatch}) => {
 
         try {
-            const response = await axios.post('http://localhost:5000/api/auth/login', {
+            //@ts-expect-error
+            const response = await extra.api.post('/auth/login', {
                 authData
             })
             if (!response.data) {
@@ -21,7 +22,7 @@ export const loginByUserEmail = createAsyncThunk<User, LoginByUserEmailProps>(
             return response.data;
         } catch (error) {
             console.log(error)
-            return thunkApi.rejectWithValue('error')
+            return rejectWithValue('error')
         }
     }
 )
