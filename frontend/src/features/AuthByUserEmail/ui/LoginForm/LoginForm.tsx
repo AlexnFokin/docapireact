@@ -11,11 +11,12 @@ import { getLoginUserEmail } from "../../model/selectors/getLoginUserEmail/getLo
 import { getLoginUserPassword } from "../../model/selectors/getLoginUserPassword/getLoginUserPassword";
 import DynamicModuleLoader, { ReducersList } from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
-// import { getLoginIsLoading } from "../../model/selectors/getLoginIsLoading/getLoginIsLoading";
-// import { getLoginError } from "../../model/selectors/getLoginError/getLoginError";
+import { getLoginIsLoading } from "../../model/selectors/getLoginIsLoading/getLoginIsLoading";
+import { getLoginError } from "../../model/selectors/getLoginError/getLoginError";
+import { Text, TextTheme } from "shared/ui/Text/Text";
 
 
-export interface LoginFormProps {useDispatch
+export interface LoginFormProps {
     className?: string;
     onSuccess: () => void;
 }
@@ -31,8 +32,8 @@ const LoginForm = memo(({className, onSuccess}: LoginFormProps) => {
 
     const email = useSelector(getLoginUserEmail);
     const password = useSelector(getLoginUserPassword);
-    // const isLoading = useSelector(getLoginIsLoading);
-    // const error = useSelector(getLoginError);
+    const isLoading = useSelector(getLoginIsLoading);
+    const error = useSelector(getLoginError);
 
     const onChangeUserEmail = useCallback((value: string) => {
         dispatch(loginActions.setEmail(value || ''))
@@ -57,6 +58,8 @@ const LoginForm = memo(({className, onSuccess}: LoginFormProps) => {
             removeAfterUnmount={true}
         >
             <div className={classNames(cls.LoginForm, {}, [className])}>
+                <Text title={t('Login Form')}/>
+                {error && <Text text={error} theme={TextTheme.ERROR}/>}
                 <Input 
                     type="text" 
                     name="email" 
@@ -75,6 +78,7 @@ const LoginForm = memo(({className, onSuccess}: LoginFormProps) => {
                     theme={ButtonTheme.OUTLINE}
                     rounded
                     onClick={onLoginClick}
+                    disabled={isLoading}
                 >
                     {t('Login')}
                 </Button>

@@ -75,3 +75,8 @@
 .rounded {
     border-radius: 5px;
 }
+
+.disabled {
+    opacity: .3;
+    pointer-events: none;
+}

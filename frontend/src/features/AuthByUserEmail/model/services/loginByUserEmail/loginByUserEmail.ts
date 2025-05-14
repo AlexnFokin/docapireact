@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { ThunkConfig } from "app/providers/StoreProvider";
 import { User, userActions } from "entities/User";
+import i18n from "shared/config/i18n/i18n";
 import { USER_LOCALSTORAGE_KEY } from "shared/const/local.storadge";
 
 interface LoginByUserEmailProps {
@@ -30,7 +31,7 @@ export const loginByUserEmail = createAsyncThunk<
             return response.data;
         } catch (error) {
             console.log(error)
-            return rejectWithValue('error')
+            return rejectWithValue(i18n.t('Incorrect login or password'))
         }
     }
 )

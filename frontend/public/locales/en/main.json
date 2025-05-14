@@ -2,5 +2,7 @@
     "Main page": "Main page",
     "Login": "Login",
     "Logout": "Logout",
-    "Register": "Register"
+    "Register": "Register",
+    "Login Form": "Login Form",
+    "Incorrect login or password": "Incorrect login or password"
 }

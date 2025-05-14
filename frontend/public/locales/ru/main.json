@@ -2,5 +2,7 @@
     "Main page": "Главная страница",
     "Login": "Войти",
     "Logout": "Выйти",
-    "Register": "Регистрация"
+    "Register": "Регистрация",
+    "Login Form": "Форма Авторизации",
+    "Incorrect login or password": "Неверный логин или пароль"
 }
