@@ -1,7 +1,7 @@
 import type { StorybookConfig } from '@storybook/react-webpack5';
 import path from 'path';
 import buildCssLoaders from '../build/loaders/buildCssLoaders';
-import { RuleSetRule } from 'webpack';
+import { RuleSetRule, DefinePlugin } from 'webpack';
 import buildSvgLoader from '../build/loaders/buildSvgLoader';
 
 const config: StorybookConfig = {
@@ -40,6 +40,13 @@ const config: StorybookConfig = {
         
         config.module?.rules?.push(buildSvgLoader())
         config.module.rules.push(buildCssLoaders(true))
+
+        config.plugins?.push(
+            new DefinePlugin({
+                __IS_DEV__: JSON.stringify(true), 
+                __API__: JSON.stringify(true), 
+            })
+        );
         
         return config;
     },
