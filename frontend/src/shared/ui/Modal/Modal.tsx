@@ -1,4 +1,4 @@
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import React, {
     ReactNode, useCallback, useEffect, useRef, useState,
 } from 'react';
@@ -26,8 +26,7 @@ export const Modal = (props: ModalProps) => {
 
     const [isClosing, setIsClosing] = useState(false);
     const [isMounted, setIsMounted] = useState(false);
-    // const timerRef = useRef<ReturnType<typeof setTimeout>>();
-    const timerRef = useRef<NodeJS.Timeout | null>(null); 
+    const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     const closeHandler = useCallback(() => {
         if (onClose) {
@@ -61,13 +60,15 @@ export const Modal = (props: ModalProps) => {
         }
 
         return () => {
-            clearTimeout(timerRef.current);
-            window.removeEventListener('keydown', onKeyDown);
+            if (timerRef.current) {
+                clearTimeout(timerRef.current);
+                window.removeEventListener('keydown', onKeyDown);
+            }
         };
     }, [isOpen, onKeyDown]);
 
-    const mods: Record<string, boolean> = {
-        [cls.opened]: isOpen,
+    const mods: Mods = {
+        [cls.opened]: !!isOpen,
         [cls.isClosing]: isClosing,
     };
 

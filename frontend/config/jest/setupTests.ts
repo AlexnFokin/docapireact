@@ -4,4 +4,4 @@ import 'regenerator-runtime/runtime';
 import { TextEncoder, TextDecoder } from 'util';
 
 global.TextEncoder = TextEncoder;
-global.TextDecoder = TextDecoder;
+global.TextDecoder = TextDecoder as unknown as typeof globalThis.TextDecoder;

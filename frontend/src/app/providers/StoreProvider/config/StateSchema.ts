@@ -1,19 +1,15 @@
 /* eslint-disable no-unused-vars */
 import { EnhancedStore, ReducersMapObject, UnknownAction, Reducer } from "@reduxjs/toolkit";
 import { AxiosInstance } from "axios";
-import { CounterSchema } from "entities/Counter";
 import { UserSchema } from "entities/User";
 import { LoginSchema } from "features/AuthByUserEmail";
-import { RegisterSchema } from "features/RegisterByUserEmail";
 import { NavigateOptions, To } from "react-router-dom";
 
 
 
 export interface StateSchema {
-  counter: CounterSchema
   user: UserSchema
   loginFrom?: LoginSchema
-  registerForm?: RegisterSchema
 }
 
 export type StateSchemaKey = keyof StateSchema;
@@ -32,7 +28,7 @@ export interface ReduxStoreWithmanager extends EnhancedStore<StateSchema> {
 
 export interface ThunkExtraArg {
   api: AxiosInstance,
-  navigate: (to: To, options?: NavigateOptions) => void
+  navigate?: (to: To, options?: NavigateOptions) => void
 }
 
 export interface ThunkConfig<T> {

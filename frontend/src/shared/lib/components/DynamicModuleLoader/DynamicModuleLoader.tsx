@@ -1,15 +1,14 @@
 import { Reducer } from "@reduxjs/toolkit";
 import { ReduxStoreWithmanager, StateSchemaKey } from "app/providers/StoreProvider/config/StateSchema";
 import { FC, PropsWithChildren, useEffect } from "react";
-import { useDispatch, useStore } from "react-redux";
+import { useStore } from "react-redux";
+import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 
 export type ReducersList = {
 
     // eslint-disable-next-line no-unused-vars
     [name in StateSchemaKey]?: Reducer
 }
-
-type ReducersListEntry = [StateSchemaKey, Reducer];
 
 interface DynamicModuleLoaderProps extends PropsWithChildren{
     reducers: ReducersList;
@@ -23,25 +22,21 @@ const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = (props) => {
         removeAfterUnmount 
     } = props;
     const store = useStore() as ReduxStoreWithmanager;
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
-        Object.entries(reducers).forEach(([name, reducer]: ReducersListEntry) => {
+        Object.entries(reducers).forEach(([name, reducer]) => {
             store.reducerManager.add(name as StateSchemaKey, reducer);
             dispatch({ type: `@INIT ${name} reducer` });
         })
        
-
         return () => {
-
-            Object.entries(reducers).forEach(([name]: ReducersListEntry) => {
+            Object.entries(reducers).forEach(([name]) => {
                 if (removeAfterUnmount) {
                     store.reducerManager.remove(name as StateSchemaKey);
                     dispatch({ type: `@DESTROY ${name} reducer` });
                 }
             })
-
-            
         };
     }, [dispatch, reducers, removeAfterUnmount, store]);
 
