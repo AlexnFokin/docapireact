@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { EnhancedStore, ReducersMapObject, UnknownAction, Reducer } from "@reduxjs/toolkit";
 import { AxiosInstance } from "axios";
+import { ProfileSchema } from "entities/Profile";
 import { UserSchema } from "entities/User";
 import { LoginSchema } from "features/AuthByUserEmail";
 import { NavigateOptions, To } from "react-router-dom";
@@ -10,6 +11,7 @@ import { NavigateOptions, To } from "react-router-dom";
 export interface StateSchema {
   user: UserSchema
   loginFrom?: LoginSchema
+  profile?: ProfileSchema
 }
 
 export type StateSchemaKey = keyof StateSchema;

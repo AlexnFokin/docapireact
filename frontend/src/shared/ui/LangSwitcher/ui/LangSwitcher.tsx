@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import * as cls from './LangSwitcher.module.scss';
 import { Button } from 'shared/ui/Button/ui/Button';
 import { ButtonTheme } from 'shared/ui/Button/ui/Button';
@@ -34,4 +34,4 @@ const LangSwitcher: FC<LangSwitcherProps> = ({className, short}) => {
     )
 }
 
-export default LangSwitcher;
+export default memo(LangSwitcher);
